@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const isMoreThenEighteen = (date) => {
    return new Promise((resolve, reject) => {
       let dateParts = date.split("/");
@@ -29,3 +31,17 @@ async function execute() {
 }
 
 execute();
+
+// Flemme de changer la fonction pour quelle marche pour la SWAPI
+async function getUser() {
+   try {
+      const response = await axios.get("https://swapi.py4e.com/api/people/1");
+      isMoreThenEighteen(response.data.birth_year).then((result) => {
+         console.log(result);
+      });
+   } catch (error) {
+      console.error(error);
+   }
+}
+
+getUser();
